@@ -34,7 +34,9 @@ const Header = () => {
                 </div>
                 <div className="flex justify-between items-center cursor-pointer gap-x-[12] px-[12] py-[8] bg-[#1AD598] text-[#052B1E] rounded-[40] hover:opacity-90">
                     <span>Trở Thành Khách Hàng</span>
-                    <Image src={arrowUpRight} height={14} width={14} alt="Arrow" />
+                    <div className="h-[22] w-[22] bg-black rounded-full flex justify-center items-center">
+                        <Image src={arrowUpRight} height={14} width={14} alt="Arrow" />
+                    </div>
                 </div>
             </div>
         </header>
