@@ -1,14 +1,11 @@
 'use client'
 
+import { ARROW_RIGHT, ICON_CALENDAR, ICON_CLOCK } from "@/common/constants";
 import { BlogPost } from "@/common/interfaces";
 import Image from "next/image";
 import Link from "next/link";
 
 const PostCard = (post: BlogPost) => {
-  const arrowRight = "/assets/images/arrow-right.png";
-  const iconCalendar = "/assets/images/icon-calendar.png";
-  const iconClock = "/assets/images/icon-clock.png";
-
   return (
     <div>
       <Link href={`/blog/${post.slug}`}>
@@ -17,27 +14,30 @@ const PostCard = (post: BlogPost) => {
             <Image
               src={post.image}
               alt={post.title}
-              height={475}
-              width={500}
+              height={700}
+              width={700}
               className="object-cover"
               sizes="auto"
             />
           </div>
-          <div className="p-4">
-            <h3 className="text-[18px] font-medium mb-2">{post.category}</h3>
-            <h3 className="text-[18px] font-medium mb-2">{post.title}</h3>
-            <div className="flex items-center text-[14px] text-[#33404A]">
-              <div className="flex justify-between items-center gap-[4]">
-                <Image src={iconCalendar} alt="Calendar" height={18} width={18} sizes="auto" />
-                {post.date}
+          <div className="py-8 px-4 flex justify-between flex-col gap-[8px]">
+            <span className="text-xs text-[#0F4F9E] w-fit bg-[#E2F0FE] px-[8px] py-[4px] rounded-[8px]">{post.category}</span>
+            <h3 className="text-[20px] lg:text-[24px] text-[#33404A] font-extrabold my-2">{post.title}</h3>
+            <div className="flex items-center gap-[12px] text-[14px] lg:text-[16px] text-[#33404A]">
+              <div className="flex justify-between items-center gap-[8px]">
+                <Image src={ICON_CALENDAR} alt="Calendar" height={18} width={18} sizes="auto" />
+                <span className="text-[#667F93] text-[12px] lg:text-[14px]">{post.date}</span>
               </div>
-              <div className="flex justify-between items-center gap-[4] ml-4">
-                <Image src={iconClock} alt="Clock" height={18} width={18} sizes="auto" />
-                {post.readTime}
+              <span className="text-[#D9E1E7]">|</span>
+              <div className="flex justify-between items-center gap-[8px]">
+                <Image src={ICON_CLOCK} alt="Clock" height={18} width={18} sizes="auto" />
+                <span className="text-[#667F93] text-[12px] lg:text-[14px]">{post.readTime}</span>
               </div>
             </div>
-            Khám phá thêm
-            <Image src={arrowRight} alt="Arrow" height={18} width={18} sizes="auto" />
+            <div className="flex items-center gap-[12px] text-[14px] lg:text-[16px] text-[#667F93] font-semibold">
+              Khám phá thêm
+              <Image src={ARROW_RIGHT} alt="Arrow" height={18} width={18} sizes="auto" />
+            </div>
           </div>
         </div>
       </Link>
