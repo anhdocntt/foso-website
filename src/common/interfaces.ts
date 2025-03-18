@@ -13,3 +13,22 @@ export interface Category {
   name: string;
   totalPost: number;
 }
+
+export interface TableContent {
+  id: string;
+  title: string;
+}
+
+export interface Social {
+  name: string;
+  icon: string;
+  link: string;
+}
+
+export interface Reaction {
+  id: string;
+  emoji: string;
+  label: string;
+  count: number;
+  isSelected?: boolean;
+}

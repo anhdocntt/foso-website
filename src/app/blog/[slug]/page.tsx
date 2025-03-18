@@ -1,23 +1,87 @@
 'use client'
 
+import { Reaction, Social, TableContent } from "@/common/interfaces";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 const BlogDetail = () => {
-    const tableOfContents = [
+    const avatar = "/assets/images/avatar-logo.png";
+    const iconZalo = "/assets/images/icon-zalo.png";
+    const iconFacebook = "/assets/images/icon-facebook.png";
+    const iconX = "/assets/images/icon-x.png";
+    const iconLinkedin = "/assets/images/icon-linkedin.png";
+    const iconSocial = "/assets/images/icon-social.png";
+    const iconLike = "/assets/images/icon-like.png";
+    const iconHeart = "/assets/images/icon-heart.png";
+    const iconSurprise = "/assets/images/icon-surprise.png";
+    const iconWow = "/assets/images/icon-wow.png";
+    const iconBoring = "/assets/images/icon-boring.png";
+    const iconAngry = "/assets/images/icon-angry.png";
+    const banner5s_1 = "/assets/images/quy-trinh-5s.png";
+    const banner5s_2 = "/assets/images/quy-trinh-5s-2.png";
+    const banner5s_3 = "/assets/images/quy-trinh-5s-3.png";
+
+    const tableOfContents: TableContent[] = [
         { id: "intro", title: "1. Quy trình 5S là gì?" },
         { id: "benefits", title: "2. Tại sao doanh nghiệp cần quy trình 5S?" },
         { id: "steps", title: "3. Quy trình 5S gồm các bước" },
         { id: "implementation", title: "4. Các bước thực hiện quy trình 5S" },
         { id: "success", title: "5. Các yếu tố tạo nên thành công quy trình 5S" },
     ];
+    const socials: Social[] = [
+        {
+            name: "Zalo",
+            icon: iconZalo,
+            link: "",
+        },
+        {
+            name: "Facebook",
+            icon: iconFacebook,
+            link: "",
+        },
+        {
+            name: "X",
+            icon: iconX,
+            link: "",
+        },
+        {
+            name: "Linkedin",
+            icon: iconLinkedin,
+            link: "",
+        },
+        {
+            name: "Social",
+            icon: iconSocial,
+            link: "",
+        }
+    ]
+
+    const [reactions, setReactions] = useState<Reaction[]>([
+        { id: 'useful', emoji: iconLike, label: 'Hữu ích', count: 1, isSelected: true },
+        { id: 'love', emoji: iconHeart, label: 'Yêu thích', count: 2, isSelected: false },
+        { id: 'fun', emoji: iconSurprise, label: 'Thú vị', count: 0, isSelected: false },
+        { id: 'wow', emoji: iconWow, label: 'Bất ngờ', count: 1, isSelected: false },
+        { id: 'boring', emoji: iconBoring, label: 'Nhàm chán', count: 0, isSelected: false },
+        { id: 'angry', emoji: iconAngry, label: 'Tức giận', count: 0, isSelected: false },
+    ]);
+
+    const handleReaction = (selectedId: string) => {
+        setReactions(prev => prev.map(reaction => ({
+            ...reaction,
+            isSelected: reaction.id === selectedId ? !reaction.isSelected : reaction.isSelected,
+            count: reaction.id === selectedId
+                ? (reaction.isSelected ? reaction.count - 1 : reaction.count + 1)
+                : reaction.count
+        })));
+    };
 
     return (
         <div className="mx-auto px-[240px] py-8">
             <div className="mb-6 text-[14px]">
-                <Link href="/" className="hover:text-[#54ABB1]">Trang chủ</Link>
+                <Link href="/" className="hover:text-green-600">Trang chủ</Link>
                 <span className="text-[#33404A] mx-2">{'>'}</span>
-                <Link href="/blog" className="hover:text-[#54ABB1]">Blog</Link>
+                <Link href="/blog" className="hover:text-green-600">Blog</Link>
                 <span className="text-[#33404A] mx-2">{'>'}</span>
                 <span className="font-semibold">Quy trình 5S là gì?</span>
             </div>
@@ -34,12 +98,13 @@ const BlogDetail = () => {
                         <span>10 phút đọc</span>
                     </div>
 
-                    <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
+                    <div className="relative w-full h-[500px] mb-8 rounded-lg overflow-hidden">
                         <Image
-                            src="/assets/images/5s-process.png"
+                            src={banner5s_1}
                             alt="5S Process"
                             fill
                             className="object-cover"
+                            sizes="auto"
                         />
                     </div>
 
@@ -67,24 +132,26 @@ const BlogDetail = () => {
 
                         <div id="steps" className="scroll-mt-24">
                             <h2 className="text-[24px] font-bold mb-4 text-[#17181A]">3. Quy trình 5S gồm các bước</h2>
-                            <div className="relative w-full h-[300px] my-8">
+                            <div className="relative w-full h-[500px] my-8">
                                 <Image
-                                    src="/assets/images/5s-steps.png"
+                                    src={banner5s_2}
                                     alt="5S Steps"
                                     fill
                                     className="object-contain"
+                                    sizes="auto"
                                 />
                             </div>
                         </div>
 
                         <div id="implementation" className="scroll-mt-24">
                             <h2 className="text-[24px] font-bold mb-4 text-[#17181A]">4. Các bước thực hiện quy trình 5S</h2>
-                            <div className="relative w-full h-[300px] my-8">
+                            <div className="relative w-full h-[500px] my-8">
                                 <Image
-                                    src="/assets/images/5s-implementation.png"
+                                    src={banner5s_3}
                                     alt="5S Implementation"
                                     fill
                                     className="object-contain"
+                                    sizes="auto"
                                 />
                             </div>
                         </div>
@@ -114,6 +181,39 @@ const BlogDetail = () => {
                                 </ul>
                             </div>
                         </div>
+
+                        <div className="mt-12 mb-8">
+                            <div className="text-center">
+                                <h3 className="text-[20px] font-medium mb-4 text-[#17181A]">
+                                    Bạn thấy bài viết như thế nào?
+                                </h3>
+                                <p className="text-[14px] text-[#33404A] mb-6">
+                                    {reactions.reduce((sum, reaction) => sum + reaction.count, 0)} phản hồi
+                                </p>
+
+                                <div className="flex flex-wrap justify-center gap-4">
+                                    {reactions.map((reaction) => (
+                                        <button
+                                            key={reaction.id}
+                                            onClick={() => handleReaction(reaction.id)}
+                                            className={`flex flex-col items-center min-w-[90px] p-3 rounded-[4px] transition-all cursor-pointer hover:bg-[#F5F5F5]
+                                                ${reaction.isSelected
+                                                    ? 'border-2 border-[#10805B]'
+                                                    : ''
+                                                }`}
+                                        >
+                                            <Image src={reaction.emoji} alt={reaction.label} width={48} height={48} sizes="auto" />
+                                            <span className="text-[14px] text-[#17181A] mb-1">
+                                                {reaction.count}
+                                            </span>
+                                            <span className="text-[12px] text-[#33404A]">
+                                                {reaction.label}
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -125,7 +225,7 @@ const BlogDetail = () => {
                                 <li key={item.id}>
                                     <a
                                         href={`#${item.id}`}
-                                        className="text-[14px] text-[#33404A] hover:text-[#54ABB1] block transition-colors"
+                                        className="text-[14px] text-[#33404A] hover:text-green-600 block transition-colors"
                                     >
                                         {item.title}
                                     </a>
@@ -136,17 +236,12 @@ const BlogDetail = () => {
                 </div>
             </div>
 
-            <div className="fixed left-4 top-1/2 transform -translate-y-1/2 hidden lg:flex flex-col gap-3">
-                <button className="p-3 rounded-full bg-[#54ABB1] text-white hover:bg-[#3d8a8f] transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                    </svg>
-                </button>
-                <button className="p-3 rounded-full bg-[#54ABB1] text-white hover:bg-[#3d8a8f] transition-colors">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92zM18 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm12 7.02c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" />
-                    </svg>
-                </button>
+            <div className="fixed left-[90px] top-1/2 transform -translate-y-1/2 hidden lg:flex flex-col gap-3">
+                {socials.map((social) => (
+                    <button key={social.name} className="p-[12px] rounded-[16px] border-[1px] border-[#15AA7A] hover:bg-[#15AA7A22] cursor-pointer transition-colors">
+                        <Image src={social.icon} alt={social.name} width={24} height={24} sizes="auto" />
+                    </button>
+                ))}
             </div>
         </div>
     );
