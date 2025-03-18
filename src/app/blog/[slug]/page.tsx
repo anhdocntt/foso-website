@@ -85,7 +85,7 @@ const BlogDetail = () => {
                         <div id="intro" className="scroll-mt-24">
                             <h2 className="text-[24px] font-bold mb-4 text-[#17181A]">1. Quy trình 5S là gì?</h2>
                             <p className="text-[#33404A] leading-relaxed mb-6">
-                                5S là một phương pháp quản lý và tổ chức nơi làm việc được phát triển tại Nhật Bản. Tên gọi "5S" bắt nguồn từ 5 từ tiếng Nhật bắt đầu bằng chữ "S": Seiri, Seiton, Seiso, Seiketsu và Shitsuke.
+                                5S là một phương pháp quản lý và tổ chức nơi làm việc được phát triển tại Nhật Bản. Tên gọi &quot;5S&quot; bắt nguồn từ 5 từ tiếng Nhật bắt đầu bằng chữ &quot;S&quot;: Seiri, Seiton, Seiso, Seiketsu và Shitsuke.
                             </p>
                         </div>
                         <div id="benefits" className="scroll-mt-24">
